@@ -23,7 +23,7 @@ mvn clean
 mvn install
 ```
 
-To execute the tests commands:
+To run the tests execute the following command:
 ```bash
 mvn test
 ```
