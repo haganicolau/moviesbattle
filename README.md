@@ -8,6 +8,25 @@ The API provides endpoints to create quizzes, answer questions about movies, get
 
 Inside the `docs` folder, you'll find the Swagger of the REST API for viewing and interacting with the endpoints. Additionally, there's also a Postman export to facilitate importing and testing the endpoints.
 
+### Docs folder
+- Swagger api documentation
+- Postman export
+- Entity Relationship Diagram
+
+#### Project Commands
+
+To build the project, execute the following commands:
+
+```bash
+mvn clean
+mvn install
+```
+
+To execute the tests commands:
+```bash
+mvn test
+```
+
 #### cURLs and Responses
 
 Here are some examples of how to use the API with cURL:
@@ -110,17 +129,4 @@ Here are some examples of how to use the API with cURL:
         }
     }
     ```
-
-#### Project Commands
-
-To build the project, execute the following commands:
-
-```bash
-mvn clean
-mvn install
-```
-
-To execute the tests commands:
-```bash
-mvn test
-```
+   
