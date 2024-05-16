@@ -1,7 +1,6 @@
 package com.tech.ada.moviesbattle.repository;
 
 import com.tech.ada.moviesbattle.model.Player;
-import org.hibernate.validator.internal.constraintvalidators.bv.AssertTrueValidator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
