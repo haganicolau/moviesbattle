@@ -17,6 +17,12 @@ public class FactoryQuizDto <T, F> implements IFactoryDto<QuizDto, Quiz> {
         this.dateUtil = dateUtil;
     }
 
+    /**
+     * Implements the buildFromEntity method defined in the IFactoryDto interface. It receives an entity and returns
+     * a dto
+     * @param quiz
+     * @return
+     */
     @Override
     public QuizDto buildFromEntity(Quiz quiz) {
         QuizDto dto = new QuizDto();
@@ -27,6 +33,12 @@ public class FactoryQuizDto <T, F> implements IFactoryDto<QuizDto, Quiz> {
         return dto;
     }
 
+    /**
+     * Implements the buildFromDto method defined in the IFactoryDto interface. It receives a dto and returns
+     * an entity.
+     * @param dto
+     * @return
+     */
     @Override
     public Quiz buildFromDto(QuizDto dto) {
         Quiz quiz = new Quiz();

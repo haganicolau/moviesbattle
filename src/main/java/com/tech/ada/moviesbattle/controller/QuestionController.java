@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+/**
+ * class is a Spring REST controller responsible for handling requests related to quizzes and questions.
+ */
 @RestController
 @RequestMapping()
 public class QuestionController extends AbstractController {
@@ -34,6 +37,12 @@ public class QuestionController extends AbstractController {
         this.questionService = questionService;
     }
 
+    /**
+     * An endpoint method mapped to the URL /battlemovies/{idQuiz}/question using HTTP GET method. Creates a new
+     * question for the specified quiz ID.
+     * @param idQuiz
+     * @return
+     */
     @GetMapping(value = "/battlemovies/{idQuiz}/question", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createQuestion(@PathVariable Long idQuiz) {
         LOG.info("Create new question from idQuiz: {}", idQuiz);
@@ -64,6 +73,13 @@ public class QuestionController extends AbstractController {
 
     }
 
+    /**
+     * An endpoint method mapped to the URL /battlemovies/{idQuiz}/answer using HTTP POST method. Validates the answer
+     * submitted by the player for the specified quiz ID.
+     * @param idQuiz
+     * @param dto
+     * @return
+     */
     @PostMapping(value ="/battlemovies/{idQuiz}/answer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> answerQuestion(@PathVariable Long idQuiz, @Valid @RequestBody AnswerDto dto) {
         LOG.info("Answer the question from idQuiz: {}", idQuiz);

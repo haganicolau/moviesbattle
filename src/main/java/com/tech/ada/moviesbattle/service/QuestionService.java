@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * The QuestionService class acts as a service layer component responsible for managing question-related operations
+ * and interactions with the underlying data store.
+ */
 @Service
 public class QuestionService {
 
@@ -34,6 +38,12 @@ public class QuestionService {
         this.quizService = quizService;
     }
 
+    /**
+     * Creates a new question for the specified quiz and converts it into a QuestionDto object.
+     * @param quiz
+     * @return
+     * @throws Exception
+     */
     public QuestionDto createQuestionAndConvertDto(Quiz quiz) throws Exception {
 
         Optional<Question> optionalQuestion = this.questionRepository.findUnansweredByPlayer(quiz);
@@ -45,6 +55,12 @@ public class QuestionService {
         return this.factoryQuestionDto.buildFromEntity(question);
     }
 
+    /**
+     * Creates a new question for the specified quiz.
+     * @param quiz
+     * @return
+     * @throws NotExistMoviesException
+     */
     public Question createQuestion(Quiz quiz) throws NotExistMoviesException {
         List<Movie> movies = getMovies(quiz);
 
@@ -55,6 +71,12 @@ public class QuestionService {
         return questionRepository.save(question);
     }
 
+    /**
+     * Retrieves a list of movies for a question based on the specified quiz.
+     * @param quiz
+     * @return
+     * @throws NotExistMoviesException
+     */
     public List<Movie> getMovies(Quiz quiz) throws NotExistMoviesException {
         List<Movie> movies;
         int controllerToScape = 0;
@@ -69,6 +91,13 @@ public class QuestionService {
         return movies;
     }
 
+    /**
+     * Validates the answer submitted by a player for the specified quiz.
+     * @param player
+     * @param dto
+     * @param quiz
+     * @return
+     */
     public boolean validateAnswerQuestion(Player player, AnswerDto dto, Quiz quiz) {
         Optional<Question> optionalQuestion = this.questionRepository.findUnansweredByPlayer(quiz);
         if (optionalQuestion.isEmpty()) {

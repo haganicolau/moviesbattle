@@ -22,6 +22,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+/**
+ * The class is responsible for handling authentication based on custom headers in HTTP requests. It extends the
+ * OncePerRequestFilter class, ensuring it executes once per request.
+ */
 @Component
 public class XHeaderAuthenticationFilter extends OncePerRequestFilter {
 
@@ -35,6 +39,15 @@ public class XHeaderAuthenticationFilter extends OncePerRequestFilter {
         this.util = new Util();
     }
 
+    /**
+     * Retrieves the "Authorization" header from the HTTP request and validates its format. Decodes and extracts the
+     * username and password from the header, hashes the password, and attempts to find a matching user in the database using the playerRepository.
+     * @param request received
+     * @param response to sent
+     * @param filterChain to validate
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response, FilterChain filterChain)
@@ -70,6 +83,11 @@ public class XHeaderAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * Private method responsible for creating a User object from the provided Player instance.
+     * @param player account
+     * @return USER
+     */
     private User createUserCredential(Player player) {
         LOG.info("Create User Credential.");
         return new User(
@@ -83,6 +101,12 @@ public class XHeaderAuthenticationFilter extends OncePerRequestFilter {
 
     }
 
+    /**
+     * Sends an unauthorized response if authentication fails.
+     * @param response received
+     * @param message to sent
+     * @throws IOException
+     */
     public void sendUnathorizedResponse(HttpServletResponse response, String message) throws IOException {
         LOG.info("User not found in the database.");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

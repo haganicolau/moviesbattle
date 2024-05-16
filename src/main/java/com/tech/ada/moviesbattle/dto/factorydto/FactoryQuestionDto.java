@@ -26,6 +26,12 @@ public class FactoryQuestionDto <T, F> implements IFactoryDto<QuestionDto, Quest
         this.factoryQuizDto = factoryQuizDto;
     }
 
+    /**
+     * Implements the buildFromEntity method defined in the IFactoryDto interface. It receives an entity and returns
+     * a dto
+     * @param question
+     * @return
+     */
     @Override
     public QuestionDto buildFromEntity(Question question) {
         QuestionDto questionDto = new QuestionDto();
@@ -37,6 +43,12 @@ public class FactoryQuestionDto <T, F> implements IFactoryDto<QuestionDto, Quest
         return questionDto;
     }
 
+    /**
+     * Overall, this method encapsulates the logic for converting a list of Movie entities into a list of MovieDto
+     * objects, providing a convenient way to perform this conversion within the application.
+     * @param movies
+     * @return
+     */
     private List<MovieDto> getMovieDtoList(List<Movie> movies) {
         List<MovieDto> dtoList = new ArrayList<>();
         for (Movie movie : movies) {
@@ -46,6 +58,12 @@ public class FactoryQuestionDto <T, F> implements IFactoryDto<QuestionDto, Quest
         return dtoList;
     }
 
+    /**
+     * Implements the buildFromDto method defined in the IFactoryDto interface. It receives a dto and returns
+     * an entity.
+     * @param dto
+     * @return
+     */
     @Override
     public Question buildFromDto(QuestionDto dto) {
         Question question = new Question();
@@ -56,6 +74,12 @@ public class FactoryQuestionDto <T, F> implements IFactoryDto<QuestionDto, Quest
         return question;
     }
 
+    /**
+     * The getMovieListFromDto method is a private utility method responsible for converting a list of MovieDto objects
+     * into a list of corresponding Movie entities.
+     * @param dtoList
+     * @return
+     */
     private List<Movie> getMovieListFromDto(List<MovieDto> dtoList) {
         List<Movie> entityList = new ArrayList<>();
         for (MovieDto dto : dtoList) {

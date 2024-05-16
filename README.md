@@ -1,6 +1,6 @@
 ### Battle Movies API
 
-This is an API project developed with Spring 3.2.5, Maven, and Java 17. The API was created to manage the "Battle Movies" game, where players compete by answering questions about movies.
+This is an API project developed with Spring 3.2.5, Maven, H2 Database and Java 17. The API was created to manage the "Battle Movies" game, where players compete by answering questions about movies.
 
 #### Project Description
 
@@ -13,7 +13,7 @@ Inside the `docs` folder, you'll find the Swagger of the REST API for viewing an
 - Postman export
 - Entity Relationship Diagram
 
-#### Project Commands
+### Project Commands
 
 To build the project, execute the following commands:
 

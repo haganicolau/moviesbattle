@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * class is a Spring REST controller responsible for handling requests related to player data and scores.
+ */
 @RestController
 @RequestMapping()
 public class PlayerController extends AbstractController {
@@ -25,6 +28,11 @@ public class PlayerController extends AbstractController {
         this.playerService = playerService;
     }
 
+    /**
+     * An endpoint method mapped to the URL /battlemovies/score using HTTP GET method. Retrieves the current player's
+     * score.
+     * @return
+     */
     @GetMapping(value = "/battlemovies/score", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getScore() {
         LOG.info("Get Scores");

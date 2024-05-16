@@ -12,6 +12,11 @@ public class Util {
 
     private static final Logger LOG = LoggerFactory.getLogger(Util.class);
 
+    /**
+     * The hashPassword method is responsible for hashing a given password using the SHA-256 algorithm.
+     * @param password
+     * @return
+     */
     public String hashPassword(String password) {
         LOG.info("Decrypt/encrypt user password.");
         try {

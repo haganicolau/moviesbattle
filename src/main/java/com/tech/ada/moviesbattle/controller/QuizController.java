@@ -17,6 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Optional;
 
+/**
+ * The QuizController class is a Spring REST controller responsible for handling requests related to quizzes.
+ */
 @RestController
 @RequestMapping()
 public class QuizController extends AbstractController {
@@ -32,6 +35,11 @@ public class QuizController extends AbstractController {
         this.quizService = quizService;
     }
 
+    /**
+     * An endpoint method mapped to the URL /battlemovies/quiz using HTTP GET method. Retrieves the active quiz for the
+     * player.
+     * @return
+     */
     @GetMapping(value = "/battlemovies/quiz", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getQuiz() {
         LOG.info("Get active Quiz");
@@ -60,6 +68,11 @@ public class QuizController extends AbstractController {
         }
     }
 
+    /**
+     * An endpoint method mapped to the URL /battlemovies/quiz/start using HTTP POST method. Creates a new quiz if no
+     * active quiz is found for the player.
+     * @return
+     */
     @PostMapping(value = "/battlemovies/quiz/start", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createQuiz() {
         LOG.info("Create a new Quiz");
