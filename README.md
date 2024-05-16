@@ -8,7 +8,8 @@ The API provides endpoints to create quizzes, answer questions about movies, get
 
 Inside the `docs` folder, you'll find the Swagger of the REST API for viewing and interacting with the endpoints. Additionally, there's also a Postman export to facilitate importing and testing the endpoints.
 
-### Docs folder
+### Doc folder
+In the doc folder you can find:
 - Swagger api documentation
 - Postman export
 - Entity Relationship Diagram
