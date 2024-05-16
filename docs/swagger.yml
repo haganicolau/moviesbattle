@@ -1,0 +1,224 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Battle Movies API
+  description: API for managing Battle Movies game
+basePath: /battlemovies
+schemes:
+  - http
+paths:
+  /quiz:
+    get:
+      summary: Get active quiz
+      description: Retrieve information about the active quiz
+      produces:
+        - application/json
+      security:
+        - basicAuth: [ ]
+      parameters:
+        - name: Authorization
+          in: header
+          description: Basic Authorization header containing username and password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Active quiz found
+          schema:
+            $ref: '#/definitions/QuizDto'
+        '404':
+          description: No active quiz found
+        '401':
+          description: unauthorized
+        '500':
+          description: internal server error
+
+  /quiz/start:
+    post:
+      summary: Start a new quiz
+      description: Create a new quiz and return its details
+      produces:
+        - application/json
+      security:
+        - basicAuth: [ ]
+      parameters:
+        - name: Authorization
+          in: header
+          description: Basic Authorization header containing username and password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Quiz created successfully
+          schema:
+            $ref: '#/definitions/QuizDto'
+        '401':
+          description: Unauthorized, authentication credentials are missing or invalid
+        '500':
+          description: internal server error
+
+  /{idQuiz}/question:
+    get:
+      summary: Get question for a quiz
+      description: Retrieve a question for the specified quiz
+      produces:
+        - application/json
+      security:
+        - basicAuth: [ ]
+      parameters:
+        - name: idQuiz
+          in: path
+          description: ID of the quiz to get the question for
+          required: true
+          type: integer
+        - name: Authorization
+          in: header
+          description: Basic Authorization header containing username and password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Question retrieved successfully
+          schema:
+            $ref: '#/definitions/QuestionDto'
+        '404':
+          description: No question found for the specified quiz
+        '401':
+          description: Unauthorized, authentication credentials are missing or invalid
+        '500':
+          description: internal server error
+
+  /{idQuiz}/answer:
+    post:
+      summary: Answer a question for a quiz
+      description: Submit an answer to the question for the specified quiz
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - basicAuth: [ ]
+      parameters:
+        - name: idQuiz
+          in: path
+          description: ID of the quiz to answer the question for
+          required: true
+          type: integer
+        - name: body
+          in: body
+          description: Answer details
+          required: true
+          schema:
+            $ref: '#/definitions/AnswerDto'
+        - name: Authorization
+          in: header
+          description: Basic Authorization header containing username and password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Answer submitted successfully
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Right answer! You earned 1 point
+        '401':
+          description: Unauthorized, authentication credentials are missing or invalid
+        '500':
+          description: internal server error
+
+  /score:
+    get:
+      summary: Get the scores of players
+      description: Retrieve the scores of all players in the game
+      produces:
+        - application/json
+      security:
+        - basicAuth: [ ]
+      parameters:
+        - name: Authorization
+          in: header
+          description: Basic Authorization header containing username and password
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Scores retrieved successfully
+          schema:
+            type: object
+            properties:
+              scores:
+                type: object
+                additionalProperties:
+                  type: integer
+        '401':
+          description: Unauthorized, authentication credentials are missing or invalid
+        '500':
+          description: internal server error
+
+definitions:
+  QuizDto:
+    type: object
+    properties:
+      startDateTime:
+        type: string
+        format: date-time
+        example: "2024-05-16T01:02:29Z"
+      status:
+        type: string
+        example: ACTIVE
+      id:
+        type: integer
+        format: int64
+        example: 1
+      mistakes:
+        type: integer
+        example: 0
+  MovieDto:
+    type: object
+    properties:
+      title:
+        type: string
+        example: Wonder Woman 1984
+      year:
+        type: string
+        example: 2020
+      imdbId:
+        type: string
+        example: tt7126948
+  QuestionDto:
+    type: object
+    properties:
+      quiz:
+        $ref: '#/definitions/QuizDto'
+      movies:
+        type: array
+        items:
+          $ref: '#/definitions/MovieDto'
+      status:
+        type: string
+        example: UNANSWERED
+      questionId:
+        type: integer
+        format: int64
+        example: 1
+  AnswerDto:
+    type: object
+    properties:
+      titleMovie:
+        type: string
+        example: Wonder Woman 1984
+      questionId:
+        type: integer
+        format: int64
+        example: 1
+      imdbId:
+        type: string
+        example: tt7126948
+
+securityDefinitions:
+  basicAuth:
+    type: basic
+    description: Basic Authentication

@@ -30,7 +30,11 @@ public class PlayerController extends AbstractController {
         LOG.info("Get Scores");
 
         try {
-            this.authentication = SecurityContextHolder.getContext().getAuthentication();;
+            this.authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication == null) {
+                return getUnauthorized();
+            }
+
             Player player = playerService.getPlayerByUsername(authentication.getName());
             if (player == null) {
                 return getUnauthorized();

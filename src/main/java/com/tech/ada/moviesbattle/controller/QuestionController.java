@@ -40,6 +40,10 @@ public class QuestionController extends AbstractController {
 
         try {
             this.authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication == null) {
+                return getUnauthorized();
+            }
+
             Player player = playerService.getPlayerByUsername(authentication.getName());
             if (player == null) {
                 return getUnauthorized();
@@ -66,6 +70,10 @@ public class QuestionController extends AbstractController {
 
         try {
             this.authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication == null) {
+                return getUnauthorized();
+            }
+
             Player player = playerService.getPlayerByUsername(authentication.getName());
             if (player == null) {
                 return getUnauthorized();
