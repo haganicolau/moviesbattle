@@ -21,6 +21,7 @@ To build the project, execute the following commands:
 ```bash
 mvn clean
 mvn install
+mvn clean verify
 ```
 
 To run the tests execute the following command:
