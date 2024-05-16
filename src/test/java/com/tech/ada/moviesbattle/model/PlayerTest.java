@@ -32,7 +32,9 @@ public class PlayerTest {
         player3.setUsername("bob");
 
         assertEquals(player1, player2);
+        assertEquals(player1.hashCode(), player2.hashCode());
         assertNotEquals(player1, player3);
+        assertNotEquals(player1.hashCode(), player3.hashCode());
     }
 
 }

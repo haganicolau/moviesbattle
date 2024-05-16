@@ -15,8 +15,16 @@ public class MovieTest {
         movie.setImdbRating(9.3);
         movie.setImdbVotes(2345678);
 
+        Movie movie2 = new Movie();
+        movie2.setTitle("The Shawshank Redemption");
+        movie2.setYear("1994");
+        movie2.setImdbId("tt0111161");
+        movie2.setImdbRating(9.3);
+        movie2.setImdbVotes(2345678);
+
         String expected = "Movie{id=null, title='The Shawshank Redemption', year='1994', imdbId='tt0111161', imdbRating=9.3, imdbVotes=2345678, questionList=null}";
         assertEquals(expected, movie.toString());
+        assertEquals(movie.hashCode(), movie2.hashCode());
     }
 
     @Test
@@ -34,6 +42,8 @@ public class MovieTest {
         movie3.setTitle("The Dark Knight");
 
         assertEquals(movie1, movie2);
+        assertEquals(movie1.hashCode(), movie2.hashCode());
         assertNotEquals(movie1, movie3);
+        assertNotEquals(movie1.hashCode(), movie3.hashCode());
     }
 }

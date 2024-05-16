@@ -14,8 +14,14 @@ public class MovieDtoTest {
         movieDto.setYear("2022");
         movieDto.setImdbId("tt1234567");
 
+        MovieDto movieDto2 = new MovieDto();
+        movieDto2.setTitle("Title");
+        movieDto2.setYear("2022");
+        movieDto2.setImdbId("tt1234567");
+
         String expected = "MovieDto{title='Title', year='2022', imdbId='tt1234567'}";
         assertEquals(expected, movieDto.toString());
+        assertEquals(movieDto.hashCode(), movieDto2.hashCode());
     }
 
     @Test
@@ -36,6 +42,8 @@ public class MovieDtoTest {
         movieDto3.setImdbId("tt1234567");
 
         assertEquals(movieDto1, movieDto2);
+        assertEquals(movieDto1.hashCode(), movieDto2.hashCode());
         assertNotEquals(movieDto1, movieDto3);
+        assertNotEquals(movieDto1.hashCode(), movieDto3.hashCode());
     }
 }

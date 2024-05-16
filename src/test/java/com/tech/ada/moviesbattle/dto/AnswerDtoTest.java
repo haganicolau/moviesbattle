@@ -14,8 +14,14 @@ public class AnswerDtoTest {
         answerDto.setQuestionId(1L);
         answerDto.setImdbId("tt1234567");
 
+        AnswerDto answerDto2 = new AnswerDto();
+        answerDto2.setTitleMovie("Title");
+        answerDto2.setQuestionId(1L);
+        answerDto2.setImdbId("tt1234567");
+
         String expected = "AnswerDto{titleMovie='Title', questionId=1, imdbId='tt1234567'}";
         assertEquals(expected, answerDto.toString());
+        assertEquals(answerDto2.hashCode(), answerDto.hashCode());
     }
 
     @Test
@@ -37,6 +43,8 @@ public class AnswerDtoTest {
 
         assertEquals(answerDto1, answerDto2);
         assertNotEquals(answerDto1, answerDto3);
+        assertEquals(answerDto1.hashCode(), answerDto2.hashCode());
+        assertNotEquals(answerDto1.hashCode(), answerDto3.hashCode());
     }
 
 }

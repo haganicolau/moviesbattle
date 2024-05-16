@@ -51,7 +51,9 @@ public class QuizTest {
         quiz3.setPlayer(player3);
 
         assertEquals(quiz1, quiz2);
+        assertEquals(quiz1.hashCode(), quiz2.hashCode());
         assertNotEquals(quiz1, quiz3);
+        assertNotEquals(quiz1.hashCode(), quiz3.hashCode());
     }
 
 }

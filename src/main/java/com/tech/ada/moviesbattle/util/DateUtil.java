@@ -25,6 +25,9 @@ public class DateUtil {
      * @return string converted
      */
     public String localDateToString(LocalDate localDate) {
+        if (FORMAT_DATE == null) {
+            FORMAT_DATE = "MM-dd-yyyy";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_DATE);
         return localDate.format(formatter);
     }
@@ -35,6 +38,9 @@ public class DateUtil {
      * @return LocalDate converted
      */
     public LocalDate stringToLocalDate(String stringDate) {
+        if (FORMAT_DATE == null) {
+            FORMAT_DATE = "MM-dd-yyyy";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_DATE);
         return LocalDate.parse(stringDate, formatter);
     }
@@ -45,6 +51,9 @@ public class DateUtil {
      * @return string converted
      */
     public String localDateTimeToString(LocalDateTime localDateTime) {
+        if (FORMAT_DATE_TIME == null) {
+            FORMAT_DATE_TIME = "MM-dd-yyyy HH:mm:ss";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_DATE_TIME);
         return localDateTime.format(formatter);
     }
@@ -55,6 +64,9 @@ public class DateUtil {
      * @return DateTimeFormatter converted
      */
     public LocalDateTime stringToLocalDateTime(String date) {
+        if (FORMAT_DATE_TIME == null) {
+            FORMAT_DATE_TIME = "MM-dd-yyyy HH:mm:ss";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_DATE_TIME);
         return LocalDateTime.parse(date, formatter);
     }

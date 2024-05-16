@@ -31,6 +31,8 @@ public class QuestionTest {
         question3.setStatus(StatusQuestion.ANSWERED);
 
         assertEquals(question1, question2);
+        assertEquals(question1.hashCode(), question2.hashCode());
         assertNotEquals(question1, question3);
+        assertNotEquals(question1.hashCode(), question3.hashCode());
     }
 }
