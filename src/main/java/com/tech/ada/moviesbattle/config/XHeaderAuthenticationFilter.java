@@ -64,7 +64,7 @@ public class XHeaderAuthenticationFilter extends OncePerRequestFilter {
         String credentials = new String(Base64.getDecoder().decode(header.substring(6)),
                 StandardCharsets.UTF_8);
         String[] parts = credentials.split(":");
-        if(parts.length < 2) {
+        if (parts.length < 2) {
             sendUnathorizedResponse(response, "User credentials not found in request");
             return;
         }
